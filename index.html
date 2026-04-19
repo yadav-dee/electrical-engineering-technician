@@ -59,6 +59,36 @@
   }
   .nav-links a:hover { background: var(--forest); color: #fff; }
 
+  /* Hamburger */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column; justify-content: center; gap: 5px;
+    padding: 1rem; cursor: pointer; background: none; border: none;
+    margin-left: auto;
+  }
+  .nav-hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--ink); transition: all 0.3s;
+  }
+
+  /* Mobile drawer */
+  .nav-drawer {
+    display: none;
+    position: fixed; top: 55px; left: 0; right: 0; z-index: 99;
+    background: var(--off-white);
+    border-bottom: 2px solid var(--forest);
+    flex-direction: column;
+  }
+  .nav-drawer.open { display: flex; }
+  .nav-drawer a {
+    display: block; padding: 1rem 2rem;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-mid);
+    text-decoration: none; border-bottom: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .nav-drawer a:hover { background: var(--forest); color: #fff; }
+
   /* ── HERO ── */
   #hero {
     height: calc(100vh - 55px);
@@ -120,46 +150,65 @@
   /* ── HERO RIGHT ── */
   .hero-right {
     display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
+    align-items: center; justify-content: flex-start;
     background: var(--warm-paper);
-    padding: 3rem 2rem;
+    padding: 0;
     overflow: hidden;
-    gap: 2rem;
   }
-  .hero-stats {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1.5rem; width: 100%; max-width: 360px;
+  .photo-card {
+    display: flex; flex-direction: column;
+    width: 220px;
+    flex-shrink: 0;
   }
-  .stat-card {
-    background: var(--off-white);
-    border: 1px solid var(--border);
-    padding: 1.5rem 1.2rem;
-    border-left: 3px solid var(--forest);
+  .hero-photo-wrap {
+    width: 220px;
+    height: 270px;
+    overflow: hidden;
+    position: relative;
+    background: #d0ddd2;
   }
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem; font-weight: 700;
-    color: var(--forest); line-height: 1; margin-bottom: 0.3rem;
+  .hero-photo-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: rgba(19,31,23,0.3);
+    z-index: 2;
   }
-  .stat-label {
-    font-size: 0.65rem; font-weight: 500; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--ink-light);
-    line-height: 1.4;
+  .hero-photo-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
   }
-  .hero-badge {
-    width: 100%; max-width: 360px;
-    background: var(--forest);
-    padding: 1.2rem 1.5rem;
-    display: flex; align-items: center; gap: 1rem;
+  .photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.6rem;
+    background: repeating-linear-gradient(
+      45deg,
+      #c4d4c8,
+      #c4d4c8 10px,
+      #d0ddd2 10px,
+      #d0ddd2 20px
+    );
   }
-  .hero-badge-icon {
-    font-size: 1.8rem; flex-shrink: 0;
+  .photo-placeholder-icon { font-size: 3rem; opacity: 0.4; }
+  .photo-placeholder-text {
+    font-size: 0.65rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-mid); opacity: 0.6;
   }
-  .hero-badge-text {
-    font-size: 0.75rem; color: rgba(255,255,255,0.9);
-    line-height: 1.5; letter-spacing: 0.04em;
+  .hero-caption {
+    width: 220px;
+    padding: 0.65rem 1rem;
+    background: var(--ink);
+    flex-shrink: 0;
   }
-  .hero-badge-text strong { color: #fff; font-weight: 500; }
+  .hero-caption p {
+    font-size: 0.68rem; color: rgba(255,255,255,0.7);
+    line-height: 1.5; letter-spacing: 0.04em; text-align: center;
+  }
+  .hero-caption strong { color: var(--forest-light); font-weight: 500; }
 
   /* ── SECTION HEADINGS ── */
   .section-heading {
@@ -377,15 +426,38 @@
   }
   footer p { font-size: 0.72rem; letter-spacing: 0.08em; opacity: 0.6; }
 
-  /* ── RESPONSIVE ── */
+  /* ── RESUME BUTTONS ── */
+  .resume-btn {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.4rem 2rem; background: var(--forest); color: #fff;
+    text-decoration: none; width: 100%; max-width: 340px;
+    transition: background 0.2s;
+  }
+  .resume-btn:hover { background: var(--forest-light); }
+  .resume-btn-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .resume-btn-text { flex: 1; display: flex; flex-direction: column; gap: 0.15rem; }
+  .resume-btn-text strong { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; }
+  .resume-btn-text small { font-size: 0.68rem; opacity: 0.75; letter-spacing: 0.06em; }
+  .resume-btn-arrow { font-size: 1.2rem; opacity: 0.8; }
+  .resume-btn-outline {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.85rem 2rem; border: 1px solid var(--ink);
+    color: var(--ink); font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .resume-btn-outline:hover { background: var(--ink); color: var(--off-white); }
+
   @media (max-width: 900px) {
     nav { padding: 0 1.5rem; }
     .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
     #hero { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
     .hero-left { padding: 5rem 1.5rem 2rem; border-right: none; border-bottom: 1px solid var(--border); order: 1; }
-    .hero-right { order: 2; padding: 2.5rem 1.5rem; }
-    .hero-stats { max-width: 100%; }
-    .hero-badge { max-width: 100%; }
+    .hero-right { order: 2; padding: 2.5rem 1.5rem; min-height: auto; align-items: center; justify-content: center; }
+    .photo-card { width: 200px; margin: 0 auto; }
+    .hero-photo-wrap { width: 200px; height: 250px; }
+    .hero-caption { width: 200px; }
     #about { grid-template-columns: 1fr; }
     .about-left, .about-right { padding: 3rem 1.5rem; border-right: none; }
     #skills, #experience, #education, #training { padding: 3rem 1.5rem; }
@@ -395,7 +467,7 @@
     .edu-card { border-right: none !important; }
     .training-grid { grid-template-columns: 1fr; }
     .training-card { border-right: none !important; }
-    #contact { grid-template-columns: 1fr; }
+    #contact, #resume { grid-template-columns: 1fr; }
     .contact-left, .contact-right { padding: 3rem 1.5rem; border-right: none; }
     .exp-grid { grid-template-columns: 1fr; }
     .exp-nav { flex-direction: row; overflow-x: auto; border-right: none; border-bottom: 1px solid var(--border); }
@@ -417,9 +489,24 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#training">Training</a></li>
     <li><a href="#education">Education</a></li>
+    <li><a href="#resume">Resume</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="nav-drawer">
+  <a href="#about" onclick="closeDrawer()">About</a>
+  <a href="#skills" onclick="closeDrawer()">Skills</a>
+  <a href="#experience" onclick="closeDrawer()">Experience</a>
+  <a href="#training" onclick="closeDrawer()">Training</a>
+  <a href="#education" onclick="closeDrawer()">Education</a>
+  <a href="#resume" onclick="closeDrawer()">Resume</a>
+  <a href="#contact" onclick="closeDrawer()">Contact</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -439,28 +526,15 @@
   </div>
 
   <div class="hero-right">
-    <div class="hero-stats">
-      <div class="stat-card">
-        <div class="stat-num">4+</div>
-        <div class="stat-label">Years of Leadership Experience</div>
+    <div class="photo-card">
+      <div class="hero-photo-wrap">
+        <div class="photo-placeholder">
+          <div class="photo-placeholder-icon">👤</div>
+          <div class="photo-placeholder-text">Your Photo Here</div>
+        </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-num">B.Tech</div>
-        <div class="stat-label">Mechanical Engineering</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">2</div>
-        <div class="stat-label">Post-Graduate Diplomas</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">EE</div>
-        <div class="stat-label">Currently Studying Electrical Eng.</div>
-      </div>
-    </div>
-    <div class="hero-badge">
-      <div class="hero-badge-icon">⚡</div>
-      <div class="hero-badge-text">
-        <strong>Currently enrolled:</strong> Electrical Engineering Technician — Sault College, graduating April 2027
+      <div class="hero-caption">
+        <p><strong>Deepak Yadav</strong> — Electrical Engineering Technician · Mechanical Engineer · Sault Ste. Marie, ON</p>
       </div>
     </div>
   </div>
@@ -698,6 +772,30 @@
   </div>
 </section>
 
+<!-- RESUME -->
+<section id="resume" style="display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--border);">
+  <div style="padding:5rem 4rem; border-right:1px solid var(--border);">
+    <span class="section-label">Resume</span>
+    <h2 class="section-heading">Download my<br><em>Resume</em></h2>
+    <p style="font-family:'Libre Baskerville',serif; font-style:italic; font-size:0.95rem; color:var(--ink-mid); line-height:1.8;">
+      A full summary of my education, work experience, industrial training, and skills — all in one document.
+    </p>
+  </div>
+  <div style="padding:5rem 4rem; background:var(--warm-paper); display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:1.5rem;">
+    <a href="Deepak_Yadav_Resume.pdf" target="_blank" class="resume-btn">
+      <span class="resume-btn-icon">📄</span>
+      <span class="resume-btn-text">
+        <strong>Open Resume PDF</strong>
+        <small>Opens in a new tab</small>
+      </span>
+      <span class="resume-btn-arrow">→</span>
+    </a>
+    <a href="Deepak_Yadav_Resume.pdf" download class="resume-btn-outline">
+      ⬇ Download PDF
+    </a>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-left fade-up">
@@ -724,6 +822,25 @@
 </footer>
 
 <script>
+  // ── Hamburger menu ────────────────────────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('nav-drawer');
+  hamburger.addEventListener('click', () => {
+    drawer.classList.toggle('open');
+    const spans = hamburger.querySelectorAll('span');
+    if (drawer.classList.contains('open')) {
+      spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+    } else {
+      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+  });
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+  }
+
   function showExp(id, el) {
     document.querySelectorAll('.exp-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.exp-nav-item').forEach(n => n.classList.remove('active'));
