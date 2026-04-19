@@ -330,9 +330,25 @@
     position: relative;
   }
   .exp-panel ul li::before { content: '→'; position: absolute; left: 0; color: var(--forest); }
+  .exp-highlight {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 0.88rem; color: var(--ink-mid); line-height: 1.8;
+    padding: 0.9rem 1.2rem;
+    background: var(--forest-pale);
+    border-left: 3px solid var(--forest);
+    margin-bottom: 1.5rem;
+  }
 
   /* ── TRAINING ── */
   #training { padding: 5rem 4rem; border-bottom: 1px solid var(--border); background: var(--warm-paper); }
+  .training-intro {
+    max-width: 720px; margin-bottom: 3rem;
+  }
+  .training-intro p {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.95rem; line-height: 1.9; color: var(--ink-mid);
+  }
   .training-grid {
     display: grid; grid-template-columns: 1fr 1fr;
     border: 1px solid var(--border); gap: 0;
@@ -356,11 +372,29 @@
   }
   .training-card .org {
     font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--forest); margin-bottom: 1rem;
+    color: var(--forest); margin-bottom: 1.2rem;
+  }
+  .training-detail-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; border: 1px solid var(--border); margin-bottom: 0.5rem;
+  }
+  .training-detail-item {
+    padding: 0.7rem 0.9rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .training-detail-item:nth-child(even) { border-right: none; }
+  .training-detail-item:nth-last-child(-n+2) { border-bottom: none; }
+  .training-detail-label {
+    font-size: 0.58rem; font-weight: 500; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--forest); margin-bottom: 0.25rem;
+  }
+  .training-detail-value {
+    font-size: 0.78rem; color: var(--ink-mid); line-height: 1.4;
   }
   .training-card p { font-size: 0.85rem; color: var(--ink-mid); line-height: 1.7; }
   .training-finding {
-    margin-top: 1rem;
+    margin-top: 1.2rem;
     padding: 0.8rem 1rem; background: var(--forest-pale);
     border-left: 3px solid var(--forest);
     font-size: 0.82rem; color: var(--ink); line-height: 1.6;
@@ -426,6 +460,29 @@
   }
   footer p { font-size: 0.72rem; letter-spacing: 0.08em; opacity: 0.6; }
 
+  .training-photo-wrap {
+    width: 100%; height: 180px;
+    overflow: hidden; position: relative;
+    margin-bottom: 1.2rem;
+  }
+  .training-photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      #c4d4c8,
+      #c4d4c8 10px,
+      #d0ddd2 10px,
+      #d0ddd2 20px
+    );
+  }
+  .training-photo-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+
   /* ── RESUME BUTTONS ── */
   .resume-btn {
     display: flex; align-items: center; gap: 1rem;
@@ -467,6 +524,10 @@
     .edu-card { border-right: none !important; }
     .training-grid { grid-template-columns: 1fr; }
     .training-card { border-right: none !important; }
+    .training-detail-grid { grid-template-columns: 1fr; }
+    .training-detail-item { border-right: none !important; }
+    .training-detail-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+    .training-detail-item:last-child { border-bottom: none; }
     #contact, #resume { grid-template-columns: 1fr; }
     .contact-left, .contact-right { padding: 3rem 1.5rem; border-right: none; }
     .exp-grid { grid-template-columns: 1fr; }
@@ -678,40 +739,66 @@
     <div class="exp-panels">
       <div class="exp-panel active" id="exp-bk">
         <h3>Shift Manager</h3>
-        <div class="org-full">Burger King · 625 Trunk Road, Sault Ste. Marie, ON</div>
+        <div class="org-full">Burger King · 625 Trunk Road, Sault Ste. Marie, ON · May 2021 – Present</div>
+        <div class="exp-highlight">
+          Promoted to Shift Manager after consistently demonstrating reliability, speed, and leadership on the floor. Now responsible for the full operation of shifts — people, product, and performance.
+        </div>
         <ul>
-          <li>Supervised daily shift operations, ensuring adherence to company food quality and safety standards at all times</li>
-          <li>Delivered exceptional customer service and resolved escalated customer concerns professionally and efficiently</li>
-          <li>Trained and mentored new team members on operational procedures, food preparation standards, and workplace policies</li>
-          <li>Managed inventory levels, placed and received truck orders, and ensured accurate stock control to minimise waste</li>
-          <li>Coordinated team communication and maintained a positive, productive work environment during peak service periods</li>
+          <li>Lead shifts of 6–10 team members, assigning stations, managing breaks, and adjusting coverage in real time based on customer flow and business volume</li>
+          <li>Uphold Burger King's food quality and safety standards at every stage — from food preparation and temperature checks to cleanliness audits and equipment maintenance</li>
+          <li>Onboard and train new hires from day one: demonstrating station procedures, food standards, health and safety protocols, and customer service expectations — and following up with coaching as they develop</li>
+          <li>Own inventory from end to end: conducting daily stock counts, identifying shortages, placing truck orders, and receiving and verifying deliveries to ensure accurate stock levels and minimal waste</li>
+          <li>Handle escalated customer complaints with professionalism, de-escalating situations and finding solutions that maintain customer satisfaction and brand standards</li>
+          <li>Open and close the store, complete cash reconciliation, generate daily reports, and ensure handover notes are accurate for incoming managers</li>
+          <li>Maintain a positive and efficient team environment under pressure — peak periods, short staffing, and high-volume rushes — keeping morale steady and service quality consistent</li>
         </ul>
       </div>
+
       <div class="exp-panel" id="exp-intelcom">
-        <h3>Independent Contractor — Package Delivery</h3>
+        <h3>Independent Contractor — Last-Mile Package Delivery</h3>
         <div class="org-full">Intelcom · Sault Ste. Marie, ON · Nov 2023 – Aug 2025</div>
+        <div class="exp-highlight">
+          Contracted to deliver parcels across residential and commercial zones in Sault Ste. Marie, operating a personal vehicle and managing the full delivery process independently from depot to doorstep.
+        </div>
         <ul>
-          <li>Managed independent delivery routes, ensuring timely and accurate parcel delivery to residential and commercial clients</li>
-          <li>Maintained organised records of deliveries and handled customer inquiries professionally</li>
-          <li>Demonstrated strong time management and self-motivation while operating independently</li>
+          <li>Completed daily delivery runs of 80–120+ parcels, sorting and loading packages at the depot and planning the most efficient route sequence to meet tight delivery windows</li>
+          <li>Navigated dynamic route changes in real time — adapting to failed deliveries, access issues, and weather conditions while maintaining a high on-time delivery rate</li>
+          <li>Communicated professionally with customers at point of delivery, handling re-delivery requests, access instructions, and package-related inquiries with care</li>
+          <li>Maintained accurate digital delivery logs using the Intelcom driver app — scanning each parcel, capturing delivery confirmations, and flagging exceptions promptly</li>
+          <li>Managed vehicle condition and safety checks daily, ensuring the van was roadworthy, properly loaded, and compliant with driving regulations throughout each shift</li>
+          <li>Consistently met or exceeded daily completion targets, demonstrating self-discipline, strong time management, and accountability without direct supervision</li>
         </ul>
       </div>
+
       <div class="exp-panel" id="exp-modatek">
-        <h3>Production Line Worker</h3>
+        <h3>Production Line Operator</h3>
         <div class="org-full">Modatek · Milton, ON · Apr 2020 – May 2021</div>
+        <div class="exp-highlight">
+          Modatek is a tier-1 automotive parts manufacturer supplying major OEMs. Worked on active production lines processing freshly robotic-welded metal stampings and structural components for vehicle frames.
+        </div>
         <ul>
-          <li>Operated on active production lines involving picking, flipping, and repositioning freshly welded metal components</li>
-          <li>Worked alongside robotic welding systems, ensuring smooth workflow and safe handling of parts through the production process</li>
-          <li>Maintained awareness of workplace health and safety standards in a high-paced industrial manufacturing environment</li>
+          <li>Operated within a high-speed automated production environment, working in sync with robotic welding cells to pick, flip, reposition, and transfer metal components through sequential assembly stages</li>
+          <li>Handled freshly welded parts with precision — recognising weld quality indicators and flagging defective or irregular welds to quality control before parts progressed down the line</li>
+          <li>Maintained strict adherence to cycle times and line rates, ensuring production targets were consistently met without compromising part integrity or operator safety</li>
+          <li>Applied engineering knowledge from my B.Tech to understand the metallurgical and structural properties of the components being processed — including weld stress points and material tolerances</li>
+          <li>Followed WHMIS and workplace safety protocols at all times, including proper PPE use, lockout/tagout procedures, and reporting near-miss incidents to supervisors</li>
+          <li>Collaborated with line supervisors and maintenance teams to communicate equipment irregularities and support unplanned downtime recovery, minimising production interruptions</li>
         </ul>
       </div>
+
       <div class="exp-panel" id="exp-tyres">
         <h3>Tire Technician</h3>
         <div class="org-full">Total Tyre Sales and Services · Sault Ste. Marie, ON · Jul 2019 – Jan 2020</div>
+        <div class="exp-highlight">
+          Hands-on technical role servicing passenger vehicles, light trucks, and SUVs. Responsible for the full tire service cycle from customer consultation through to final safety check.
+        </div>
         <ul>
-          <li>Performed tire mounting, balancing, rotation, and inspection on a wide range of vehicles</li>
-          <li>Assisted customers with product recommendations and ensured proper vehicle safety standards</li>
-          <li>Operated tire service equipment and maintained a safe and organised workshop environment</li>
+          <li>Performed complete tire service on a wide range of vehicles — mounting, demounting, balancing, rotation, inflation to spec, and valve stem replacement — using shop-standard equipment including balancing machines and tire changers</li>
+          <li>Conducted pre- and post-service vehicle inspections, identifying and documenting tread wear patterns, sidewall damage, uneven wear, and alignment indicators that could affect vehicle safety</li>
+          <li>Advised customers on tire selection based on their vehicle type, driving conditions, and budget — recommending seasonal changeovers and explaining safety implications of worn or mismatched tires</li>
+          <li>Assisted with seasonal tire changeover campaigns — managing high daily volume efficiently while maintaining quality and turnaround time during peak periods</li>
+          <li>Maintained an organised and safe workshop: correctly storing customer tires, keeping tools and equipment in working order, and ensuring the service bay met safety and cleanliness standards at all times</li>
+          <li>Supported front-of-house operations during busy periods — greeting customers, explaining service timelines, and processing transactions when required</li>
         </ul>
       </div>
     </div>
@@ -722,25 +809,84 @@
 <section id="training">
   <span class="section-label">Industrial Training</span>
   <h2 class="section-heading fade-up">Hands-on <em>Experience</em></h2>
+
+  <div class="training-intro fade-up">
+    <p>Two 6-month industrial placements at one of the world's largest FMCG manufacturers — working on the production floor of a Nestle ketchup plant in Moga, India. Both rotations built a foundation in quality assurance, precision documentation, and manufacturing standards that underpins every role I've held since.</p>
+  </div>
+
   <div class="training-grid fade-up">
     <div class="training-card">
-      <div class="training-tag">6-Month Training</div>
-      <h3>Quality Assurance & Quality Control</h3>
-      <div class="org">Nestle India Ltd. · Moga, India · During Bachelor's Degree</div>
-      <p>Trained in quality assurance and quality control processes within a large-scale food and beverage manufacturing facility.</p>
-      <p style="margin-top: 0.7rem;">Responsible for inspecting and verifying the quality of packaging materials and labels, including cartons, Tetra Pak packages, glass bottles, and tin containers.</p>
+      <div class="training-tag">Training 1 · 6 Months</div>
+      <h3>Quality Assurance & Packaging Inspection</h3>
+      <div class="org">Nestle India Ltd. — Ketchup Plant · Moga, India</div>
+
+      <div class="training-detail-grid">
+        <div class="training-detail-item">
+          <div class="training-detail-label">Plant</div>
+          <div class="training-detail-value">Nestle Ketchup Manufacturing Facility, Moga</div>
+        </div>
+        <div class="training-detail-item">
+          <div class="training-detail-label">Methodology</div>
+          <div class="training-detail-value">Six Sigma Quality Control</div>
+        </div>
+        <div class="training-detail-item">
+          <div class="training-detail-label">Reporting To</div>
+          <div class="training-detail-value">Shift Supervisor — Daily End-of-Day Reports</div>
+        </div>
+        <div class="training-detail-item">
+          <div class="training-detail-label">Materials Inspected</div>
+          <div class="training-detail-value">Cartons · Tetra Pak · Glass Bottles · Tin Containers · Labels</div>
+        </div>
+      </div>
+
+      <p style="font-size:0.85rem; color:var(--ink-mid); line-height:1.75; margin-top:1.2rem;">
+        Responsible for verifying the quality of all incoming packaging materials before they entered the production line. This involved cross-referencing <strong>computerized system recordings</strong> against physical samples — catching discrepancies between what was logged digitally and what arrived on the floor.
+      </p>
+      <p style="font-size:0.85rem; color:var(--ink-mid); line-height:1.75; margin-top:0.8rem;">
+        Applied <strong>Six Sigma principles</strong> during manual inspection — measuring dimensions, checking seal integrity, verifying print quality on labels, and confirming material specifications matched approved standards. Every deviation was documented and escalated appropriately.
+      </p>
+      <p style="font-size:0.85rem; color:var(--ink-mid); line-height:1.75; margin-top:0.8rem;">
+        Compiled and submitted a structured <strong>end-of-day quality report</strong> to the shift supervisor, summarising inspection results, flagged items, corrective actions taken, and any recurring issues requiring follow-up.
+      </p>
+
       <div class="training-finding">
-        Collaborated with QA teams to ensure packaging compliance with company standards and regulatory requirements — developing an eye for detail that now underpins every operational role I take on.
+        "Cross-checking digital records against physical reality is a discipline I carry into every job — whether it's inventory counts at Burger King or production records on a manufacturing floor. The data is only as good as the hands that verify it."
       </div>
     </div>
+
     <div class="training-card">
-      <div class="training-tag">6-Month Training</div>
-      <h3>Manufacturing Operations</h3>
-      <div class="org">Nestle India Ltd. · Moga, India · During Bachelor's Degree</div>
-      <p>Observed and participated in plant operations, mechanical maintenance, and production line workflows.</p>
-      <p style="margin-top: 0.7rem;">Gained practical exposure to large-scale FMCG manufacturing processes and industrial machinery operations.</p>
+      <div class="training-tag">Training 2 · 6 Months</div>
+      <h3>Manufacturing Operations & Plant Processes</h3>
+      <div class="org">Nestle India Ltd. — Ketchup Plant · Moga, India</div>
+
+      <div class="training-detail-grid">
+        <div class="training-detail-item">
+          <div class="training-detail-label">Focus Area</div>
+          <div class="training-detail-value">Plant Operations & Mechanical Systems</div>
+        </div>
+        <div class="training-detail-item">
+          <div class="training-detail-label">Scale</div>
+          <div class="training-detail-value">Large-Scale FMCG Production Facility</div>
+        </div>
+        <div class="training-detail-item">
+          <div class="training-detail-label">Activities</div>
+          <div class="training-detail-value">Maintenance · Production Workflow · Equipment Operation</div>
+        </div>
+        <div class="training-detail-item">
+          <div class="training-detail-label">Applied Subjects</div>
+          <div class="training-detail-value">Thermodynamics · Fluid Mechanics · Manufacturing Processes</div>
+        </div>
+      </div>
+
+      <p style="font-size:0.85rem; color:var(--ink-mid); line-height:1.75; margin-top:1.2rem;">
+        Rotated through different departments within the ketchup plant — observing and participating in production line operations, preventive mechanical maintenance, and equipment checks. Saw firsthand how engineering theory translates into daily production decisions.
+      </p>
+      <p style="font-size:0.85rem; color:var(--ink-mid); line-height:1.75; margin-top:0.8rem;">
+        Gained practical understanding of fluid handling systems, heat processing stages in sauce production, and the mechanical tolerances required to keep high-speed packaging lines running without stoppages.
+      </p>
+
       <div class="training-finding">
-        Applied thermodynamics, fluid mechanics, and manufacturing principles from coursework in a real industrial environment — bridging academic knowledge with factory-floor reality.
+        Bridging academic knowledge — thermodynamics, fluid mechanics, manufacturing processes — with factory-floor reality gave me the ability to understand not just what a machine does, but why it works the way it does.
       </div>
     </div>
   </div>
